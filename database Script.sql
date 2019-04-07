@@ -27,13 +27,12 @@ Constraint fk_idRecurrence foreign key(idRecurrence)references RecurrenceType(id
 
 create table TaskHistory(
 idTask int not null,
-taskName varchar(25),
-taskDescription varchar(50),
 taskDate Date,
 idRecurrence int not null,
 isDone bit not null,
 Constraint pk_idTask primary key(idTask,taskDate),
-Constraint fk_idTask foreign key(idTask) references task(idTask));
+Constraint fk_idTask foreign key(idTask) references task(idTask),
+constraint fk_idRecurrence_TaskHistory foreign key(idRecurrence) references recurrencetype(idRecurrence));
 
 delimiter //
 drop procedure if exists insertRecurrence //
