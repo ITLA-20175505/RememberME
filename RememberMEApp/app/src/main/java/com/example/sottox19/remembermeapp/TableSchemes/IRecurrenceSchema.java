@@ -1,4 +1,4 @@
-package com.example.sottox19.remembermeapp.Interfaces;
+package com.example.sottox19.remembermeapp.TableSchemes;
 
 public interface IRecurrenceSchema {
     String recurrenceTable = "Recurrence";
@@ -7,14 +7,15 @@ public interface IRecurrenceSchema {
     String COLUMN_DESCRIPTION = "description";
     String COLUMN_INTERVALTYPE = "intervalType";
     String COLUMN_INTERVAL = "interval";
-    String CONSTRAINT_PRIMARYKEY = "Constraint pk_recurrence primary key (" + COLUMN_IDRECURRENCE + ")";
+    String COLUMN_ISCANCELLED = "isCancelled";
+
     String createTable = "create table  if not exists " + recurrenceTable +" (" +
-            COLUMN_IDRECURRENCE + " int not null," + COLUMN_NAME +" varchar(25) not null,"+
-            COLUMN_DESCRIPTION +" text null," + COLUMN_INTERVALTYPE + " varchar(25)," +
-            COLUMN_INTERVAL +"interval int," + CONSTRAINT_PRIMARYKEY +")";
+            COLUMN_IDRECURRENCE + " INTEGER primary key, " + COLUMN_NAME +" text not null, "+
+            COLUMN_DESCRIPTION +" text null, " + COLUMN_INTERVALTYPE + " text null, " +
+            COLUMN_INTERVAL +" INTEGER null, " + COLUMN_ISCANCELLED +" boolean default 0" + ")";
 
     String [] recurrenceColumn = new String[]{COLUMN_IDRECURRENCE,COLUMN_NAME,COLUMN_DESCRIPTION,
-                                COLUMN_INTERVALTYPE,COLUMN_INTERVAL};
+                                COLUMN_INTERVALTYPE,COLUMN_ISCANCELLED};
 
 
 }

@@ -1,49 +1,49 @@
 package com.example.sottox19.remembermeapp.ModeloVO;
 
 public class RecurrenceVO {
-    private int midRecurrence;
-    private String mname;
-    private String mdescription;
-    private String mtype;
-    private int minterval;
+    private int idRecurrence;
+    private String name;
+    private String description;
+    private String type;
+    private int interval;
     /* Metodos Getter y Setter de la clase Recurrence */
-    public int getMidRecurrence() {
-        return midRecurrence;
+    public int getidRecurrence() {
+        return idRecurrence;
     }
 
-    public void setMidRecurrence(int midRecurrence) {
-        this.midRecurrence = midRecurrence;
+    public void setidRecurrence(int midRecurrence) {
+        this.idRecurrence = midRecurrence;
     }
 
-    public String getMname() {
-        return mname;
+    public String getname() {
+        return name;
     }
 
-    public void setMname(String mname) {
-        this.mname = mname;
+    public void setname(String mname) {
+        this.name = mname;
     }
 
-    public String getMdescription() {
-        return mdescription;
+    public String getdescription() {
+        return description;
     }
 
-    public void setMdescription(String mdescription) {
-        this.mdescription = mdescription;
+    public void setdescription(String mdescription) {
+        this.description = mdescription;
     }
 
-    public String getMtype() {
-        return mtype;
+    public String gettype() {
+        return type;
     }
 
-    public void setMtype(String mtype) {
-        this.mtype = mtype;
+    public void settype(String mtype) {
+        this.type = mtype;
     }
 
-    public int getMinterval() {
-        return minterval;
+    public int getinterval() {
+        return interval;
     }
 
-    public void setMinterval(int minterval) {
-        this.minterval = minterval;
+    public void setinterval(int minterval) {
+        this.interval = minterval;
     }
 }

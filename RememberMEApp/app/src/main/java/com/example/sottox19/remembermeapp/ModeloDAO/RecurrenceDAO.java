@@ -1,11 +1,10 @@
 package com.example.sottox19.remembermeapp.ModeloDAO;
 
 import android.content.ContentValues;
-import android.database.SQLException;
 import android.database.sqlite.SQLiteConstraintException;
 import android.database.sqlite.SQLiteDatabase;
 import com.example.sottox19.remembermeapp.CRUD.ABCRUD;
-import com.example.sottox19.remembermeapp.Interfaces.IRecurrenceSchema;
+import com.example.sottox19.remembermeapp.TableSchemes.IRecurrenceSchema;
 import com.example.sottox19.remembermeapp.ModeloDAO.Interface.IRecurrenceDAO;
 import com.example.sottox19.remembermeapp.ModeloVO.RecurrenceVO;
 import android.database.Cursor;
@@ -25,31 +24,29 @@ public class RecurrenceDAO extends ABCRUD implements IRecurrenceDAO,IRecurrenceS
     @Override
     public RecurrenceVO fetchById(int id) {
         // final para que no sea sobreescrito y selectionArgs es para poder ser reemplazado en el query
-        final String selectionArgs[] = {String.valueOf(id)};
-        final String selection = id + "= ?";
-        mrecurrence = new RecurrenceVO();
+        final String selectionArgs[] = {String.valueOf(id),String.valueOf(0)};
+        final String selection = COLUMN_IDRECURRENCE  + "= ? AND " + COLUMN_ISCANCELLED + " = ?";
          mFila = super.consulta(recurrenceTable,recurrenceColumn,selection,selectionArgs,COLUMN_IDRECURRENCE);
             if(mFila!=null){
                 mFila.moveToFirst();
                 while (!mFila.isAfterLast()) {
                     mrecurrence = cursorToEntity(mFila);
-                    Log.d("Recurrence","Se encontro la recurrencia por id la recurrencia por id");
                     mFila.moveToNext();
-                }mFila.close();
-            }
+                }mFila.close();}
         return mrecurrence;
     }
 
     @Override
     public ArrayList<RecurrenceVO> fetchAllRecurrence() {
         ArrayList<RecurrenceVO> listaRecurrence = new ArrayList<RecurrenceVO>();
-        mFila = super.consulta(recurrenceTable,recurrenceColumn,null,null,COLUMN_IDRECURRENCE);
+        final String selectionArgs[] = {String.valueOf(0)};
+        final String selection = COLUMN_ISCANCELLED  + " = ?";
 
+        mFila = super.consulta(recurrenceTable,recurrenceColumn,selection ,selectionArgs,COLUMN_IDRECURRENCE);
         if (mFila != null){
             mFila.moveToFirst();
             while(!mFila.isAfterLast()) {
                 mrecurrence = cursorToEntity(mFila);
-                Log.d("Recurrencia","Recurrencia agregada a la lista");
                 listaRecurrence.add(mrecurrence);
                 mFila.moveToNext();
             }mFila.close();
@@ -59,15 +56,27 @@ public class RecurrenceDAO extends ABCRUD implements IRecurrenceDAO,IRecurrenceS
 
     @Override
     public boolean addRecurrence(RecurrenceVO recurrence) {
-        setValues();
-
-        Log.d("nada","nada");
+        setValues(recurrence);
       try{
          return super.insert(recurrenceTable,getContentValues())>0;
+
       }catch (SQLiteConstraintException e){
           Log.d("Database",e.getMessage());
           return false;
       }
+    }
+    @Override
+    public int deleteRecurrence(int id) {
+        ContentValues isCancelled = new ContentValues();
+        isCancelled.put(COLUMN_ISCANCELLED,1);
+        final String selectionArgs[] = {String.valueOf(id)};
+        final String selection = COLUMN_IDRECURRENCE + "= ?";
+        try{
+        return super.update(recurrenceTable,isCancelled,selection,selectionArgs);}
+        catch (SQLiteConstraintException e){
+            Log.d("Database",e.getMessage());
+            return 0;
+        }
     }
     @Override
     protected RecurrenceVO cursorToEntity(Cursor consulta) {
@@ -81,37 +90,33 @@ public class RecurrenceDAO extends ABCRUD implements IRecurrenceDAO,IRecurrenceS
         int intervalIndex = 0;
        if (mFila.getColumnIndex(COLUMN_IDRECURRENCE )!=-1){
            idIndex = mFila.getColumnIndex(COLUMN_IDRECURRENCE);
-           mrecurrence.setMidRecurrence(mFila.getInt(idIndex));}
-       if(mFila.getColumnIndex(COLUMN_NAME)!=-1){
+           mrecurrence.setidRecurrence(mFila.getInt(idIndex));}
+       else if(mFila.getColumnIndex(COLUMN_NAME)!=-1){
            nameIndex = mFila.getColumnIndex(COLUMN_NAME);
-           mrecurrence.setMname(mFila.getString(nameIndex));}
-       if (mFila.getColumnIndex(COLUMN_DESCRIPTION)!=-1){
+           mrecurrence.setname(mFila.getString(nameIndex));}
+       else if (mFila.getColumnIndex(COLUMN_DESCRIPTION)!=-1){
            descriptionIndex = mFila.getColumnIndex(COLUMN_DESCRIPTION);
-           mrecurrence.setMdescription(mFila.getString(descriptionIndex));
+           mrecurrence.setdescription(mFila.getString(descriptionIndex));
        }
-       if (mFila.getColumnIndex(COLUMN_INTERVALTYPE)!=-1){
+        else if (mFila.getColumnIndex(COLUMN_INTERVALTYPE)!=-1){
            mFila.getColumnIndex(COLUMN_INTERVALTYPE);
-           mrecurrence.setMtype(mFila.getString(intervaltypeIndex));
+           mrecurrence.settype(mFila.getString(intervaltypeIndex));
        }
-       if (mFila.getColumnIndex(COLUMN_INTERVAL)!=-1){
+       else if (mFila.getColumnIndex(COLUMN_INTERVAL)!=-1){
            mFila.getColumnIndex(COLUMN_INTERVAL);
-           mrecurrence.setMinterval(mFila.getInt(intervalIndex));
+           mrecurrence.setinterval(mFila.getInt(intervalIndex));
        }
 
         return mrecurrence;
     }
 
-    @Override
-    public boolean deleteRecurrence(RecurrenceVO recurrence) {
-        return false;
-    }
-    private void setValues(){
-        mRegistro.put("idRecurrence","klk");
-        mRegistro.put("name","Semanal");
-        mRegistro.put("description","nada");
-        mRegistro.put("intervaltype","Dia");
-        mRegistro.put("interval","klk");
-        Log.d("Database","hola");
+
+    private void setValues(RecurrenceVO recurrence){
+         mRegistro.put(COLUMN_NAME,recurrence.getname());
+        mRegistro.put(COLUMN_DESCRIPTION,recurrence.getdescription());
+        mRegistro.put(COLUMN_INTERVALTYPE,recurrence.gettype());
+        mRegistro.put(COLUMN_INTERVAL,recurrence.getinterval());
+
     }
     private ContentValues getContentValues() {
         return mRegistro;

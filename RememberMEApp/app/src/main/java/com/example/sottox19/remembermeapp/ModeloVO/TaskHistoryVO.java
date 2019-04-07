@@ -3,72 +3,72 @@ package com.example.sottox19.remembermeapp.ModeloVO;
 public class TaskHistoryVO extends TaskVO{
     /* Metodos Implementados de Herencia de la clase Task */
     @Override
-    public int getMidTask() {
-        return super.getMidTask();
+    public int getidTask() {
+        return super.getidTask();
     }
 
     @Override
-    public void setMidTask(int midTask) {
-        super.setMidTask(midTask);
+    public void setidTask(int midTask) {
+        super.setidTask(midTask);
     }
 
     @Override
-    public String getMname() {
-        return super.getMname();
+    public String getname() {
+        return super.getname();
     }
 
     @Override
-    public void setMname(String mname) {
-        super.setMname(mname);
+    public void setname(String mname) {
+        super.setname(mname);
     }
 
     @Override
-    public String getMdescription() {
-        return super.getMdescription();
+    public String getdescription() {
+        return super.getdescription();
     }
 
     @Override
-    public void setMdescription(String mdescription) {
-        super.setMdescription(mdescription);
+    public void setdescription(String mdescription) {
+        super.setdescription(mdescription);
     }
 
     @Override
-    public String getMtaskDate() {
-        return super.getMtaskDate();
+    public String gettaskDate() {
+        return super.gettaskDate();
     }
 
     @Override
-    public void setMtaskDate(String mtaskDate) {
-        super.setMtaskDate(mtaskDate);
+    public void settaskDate(String mtaskDate) {
+        super.settaskDate(mtaskDate);
     }
 
     @Override
-    public String getMnextDate() {
-        return super.getMnextDate();
+    public String getnextDate() {
+        return super.getnextDate();
     }
 
     @Override
-    public void setMnextDate(String mnextDate) {
-        super.setMnextDate(mnextDate);
+    public void setnextDate(String mnextDate) {
+        super.setnextDate(mnextDate);
     }
 
     @Override
-    public byte getMisDone() {
-        return super.getMisDone();
+    public boolean getisDone() {
+        return super.getisDone();
     }
 
     @Override
-    public void setMisDone(byte misDone) {
-        super.setMisDone(misDone);
+    public void setisDone(boolean misDone) {
+        super.setisDone(misDone);
     }
 
     @Override
-    public RecurrenceVO getRecurrenceVO() {
-        return super.getRecurrenceVO();
+    public RecurrenceVO getRecurrence() {
+        return super.getRecurrence();
     }
 
     @Override
-    public void setRecurrenceVO(RecurrenceVO recurrenceVO) {
-        super.setRecurrenceVO(recurrenceVO);
+    public void setRecurrence(RecurrenceVO recurrence) {
+        super.setRecurrence(recurrence);
     }
 }
