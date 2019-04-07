@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">Remember_Me</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="nuevas_tareas">Nueva tarea</string>
+    <string name="tareas_realizadas">Tareas realizadas</string>
+    <string name="tareas_atrasadas">Tareas atrasadas</string>
+    <string name="tareas_pendientes">Tareas pendientes</string>
+    <string name="perfil">Mi perfil </string>
+    <string name="cerrar_sesion">Cerrar sesión</string>
+    <string name="action_settings">settings</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Nueva Tarea</string>
+    <string name="tareaperfil">perfil</string>
+    <string name="atrasada">atrasada</string>
+    <string name="TareaPendiente">pendiente</string>
+    <string name="TareaRealizada">realizadas</string>
+</resources>
