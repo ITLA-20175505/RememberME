@@ -1,11 +1,13 @@
 package com.example.user.remember_me.Logica;
 
+import android.database.sqlite.SQLiteConstraintException;
 import android.util.Log;
 import android.widget.BaseExpandableListAdapter;
 
 
 import com.example.user.remember_me.Conexion.BaseDeDatos;
 import com.example.user.remember_me.Coordinador.CoordinadorRecurrence;
+import com.example.user.remember_me.ModeloDAO.RecurrenceDAO;
 import com.example.user.remember_me.ModeloVO.RecurrenceVO;
 
 import java.util.ArrayList;
@@ -18,15 +20,14 @@ public class LogicaRecurrence {
         this.mcoordRecurrence = coordRecurrence;
     }
 
-    public void validarAddRecurrence(RecurrenceVO recurrence){
-
+    public void validarAddRecurrence(RecurrenceVO recurrence) {
         boolean isSaved = BaseDeDatos.mRecurrenceDAO.addRecurrence(recurrence);
         if (isSaved == true) {
             Log.d("Database", "Registro de la tabla Recurrence Anadido");
         }
-
-
     }
+
+
     public ArrayList<RecurrenceVO> validarListRecurrence() {
         mListaRecurrence = BaseDeDatos.mRecurrenceDAO.fetchAllRecurrence();
         if (mListaRecurrence != null) {

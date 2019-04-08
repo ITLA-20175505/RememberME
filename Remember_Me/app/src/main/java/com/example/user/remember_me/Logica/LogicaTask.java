@@ -1,5 +1,6 @@
 package com.example.user.remember_me.Logica;
 
+import android.database.sqlite.SQLiteConstraintException;
 import android.util.Log;
 
 
@@ -36,6 +37,12 @@ public void validarDeleteTask(int id){
         Log.d("Database","No se encontraron registros en la tabla Task");
     }
 }
+public void validarUpdateTask(ArrayList<TaskVO> listaTask){
+    int isUpdated = BaseDeDatos.mTaskDAO.updateTask(listaTask);
+    if(isUpdated !=0){
+        Log.d("Database","Se actualizaron " + isUpdated + " registros");
+    }
+}
 public TaskVO validarBuscarTask(int id){
     mTask = BaseDeDatos.mTaskDAO.fetchById(id);
     if(mTask!= null){
@@ -47,14 +54,10 @@ public TaskVO validarBuscarTask(int id){
     }
 }
 public ArrayList<TaskVO> validarListaTask() {
+
     listaTask = BaseDeDatos.mTaskDAO.fetchAllTask();
-    if (listaTask != null) {
-        Log.d("Database", "Lista Task creada");
-        return listaTask;
-    } else {
-        Log.d("Database", "No hay registros en la tabla Task");
-        return null;
-    }
+    Log.d("Database", "Lista Task creada");
+    return listaTask;
 }
 }
 

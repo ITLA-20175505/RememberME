@@ -13,7 +13,7 @@ public class CoordinadorRecurrence {
     private LogicaRecurrence getLogica(){
         return mlogicaRecurrence;
     }
-    public void SetLogica(LogicaRecurrence logicaRecurrence){
+    public void setLogica(LogicaRecurrence logicaRecurrence){
         this.mlogicaRecurrence = logicaRecurrence;
     }
     public void addRecurrence(RecurrenceVO recurrence){
@@ -22,6 +22,7 @@ public class CoordinadorRecurrence {
     public void deleteRecurrence(int id){
         mlogicaRecurrence.validarDeleteRecurrence(id);
     }
+
     public ArrayList<RecurrenceVO> listaRecurrence(){
         return mlogicaRecurrence.validarListRecurrence();
     }

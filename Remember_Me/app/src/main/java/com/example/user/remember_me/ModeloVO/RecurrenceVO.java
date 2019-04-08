@@ -6,6 +6,7 @@ public class RecurrenceVO {
     private String description;
     private String type;
     private int interval;
+
     /* Metodos Getter y Setter de la clase Recurrence */
     public int getidRecurrence() {
         return idRecurrence;

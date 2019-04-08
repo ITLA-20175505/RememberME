@@ -22,6 +22,9 @@ public class CoordinadorTask {
     public void deleteTask(int id){
         mLogicaTask.validarDeleteTask(id);
     }
+    public void updateTask(ArrayList<TaskVO> listaTask){
+         mLogicaTask.validarUpdateTask(listaTask);
+    }
     public TaskVO buscarTask(int id){
         return mLogicaTask.validarBuscarTask(id);
     }

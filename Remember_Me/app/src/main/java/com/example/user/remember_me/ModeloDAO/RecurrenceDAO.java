@@ -26,8 +26,8 @@ public class RecurrenceDAO extends ABCRUD implements IRecurrenceDAO,IRecurrenceS
     @Override
     public RecurrenceVO fetchById(int id) {
         // final para que no sea sobreescrito y selectionArgs es para poder ser reemplazado en el query
-        final String selectionArgs[] = {String.valueOf(id),String.valueOf(0)};
-        final String selection = COLUMN_IDRECURRENCE  + "= ? AND " + COLUMN_ISCANCELLED + " = ?";
+        final String selectionArgs[] = {String.valueOf(id)};
+        final String selection = COLUMN_IDRECURRENCE  + "= ? ";
          mFila = super.consulta(recurrenceTable,recurrenceColumn,selection,selectionArgs,COLUMN_IDRECURRENCE);
             if(mFila!=null){
                 mFila.moveToFirst();
@@ -36,6 +36,7 @@ public class RecurrenceDAO extends ABCRUD implements IRecurrenceDAO,IRecurrenceS
                     mFila.moveToNext();
                 }mFila.close();}
         return mrecurrence;
+
     }
 
     @Override
@@ -43,8 +44,7 @@ public class RecurrenceDAO extends ABCRUD implements IRecurrenceDAO,IRecurrenceS
         ArrayList<RecurrenceVO> listaRecurrence = new ArrayList<RecurrenceVO>();
         final String selectionArgs[] = {String.valueOf(0)};
         final String selection = COLUMN_ISCANCELLED  + " = ?";
-
-        mFila = super.consulta(recurrenceTable,recurrenceColumn,selection ,selectionArgs,COLUMN_IDRECURRENCE);
+        mFila = super.consulta(recurrenceTable,recurrenceColumn,selection,selectionArgs,COLUMN_IDRECURRENCE);
         if (mFila != null){
             mFila.moveToFirst();
             while(!mFila.isAfterLast()) {
@@ -82,34 +82,36 @@ public class RecurrenceDAO extends ABCRUD implements IRecurrenceDAO,IRecurrenceS
     }
     @Override
     protected RecurrenceVO cursorToEntity(Cursor consulta) {
-       mrecurrence = new RecurrenceVO();
+     RecurrenceVO  rec = new RecurrenceVO();
 
        // variables de indices de cursor
+
         int idIndex= 0;
         int nameIndex = 0;
         int descriptionIndex = 0;
         int intervaltypeIndex = 0;
         int intervalIndex = 0;
-       if (mFila.getColumnIndex(COLUMN_IDRECURRENCE )!=-1){
-           idIndex = mFila.getColumnIndex(COLUMN_IDRECURRENCE);
-           mrecurrence.setidRecurrence(mFila.getInt(idIndex));}
-       else if(mFila.getColumnIndex(COLUMN_NAME)!=-1){
-           nameIndex = mFila.getColumnIndex(COLUMN_NAME);
-           mrecurrence.setname(mFila.getString(nameIndex));}
-       else if (mFila.getColumnIndex(COLUMN_DESCRIPTION)!=-1){
-           descriptionIndex = mFila.getColumnIndex(COLUMN_DESCRIPTION);
-           mrecurrence.setdescription(mFila.getString(descriptionIndex));
-       }
-        else if (mFila.getColumnIndex(COLUMN_INTERVALTYPE)!=-1){
-           mFila.getColumnIndex(COLUMN_INTERVALTYPE);
-           mrecurrence.settype(mFila.getString(intervaltypeIndex));
-       }
-       else if (mFila.getColumnIndex(COLUMN_INTERVAL)!=-1){
-           mFila.getColumnIndex(COLUMN_INTERVAL);
-           mrecurrence.setinterval(mFila.getInt(intervalIndex));
-       }
 
-        return mrecurrence;
+        if(mFila!=null){
+       if (mFila.getColumnIndex(COLUMN_IDRECURRENCE )!=-1){
+           idIndex = mFila.getColumnIndexOrThrow(COLUMN_IDRECURRENCE);
+           rec.setidRecurrence(mFila.getInt(idIndex));}
+        if(mFila.getColumnIndex(COLUMN_NAME)!=-1){
+           nameIndex = mFila.getColumnIndexOrThrow(COLUMN_NAME);
+           rec.setname(mFila.getString(nameIndex));}
+        if (mFila.getColumnIndex(COLUMN_DESCRIPTION)!=-1){
+           descriptionIndex = mFila.getColumnIndexOrThrow(COLUMN_DESCRIPTION);
+           rec.setdescription(mFila.getString(descriptionIndex));
+       }
+         if (mFila.getColumnIndex(COLUMN_INTERVALTYPE)!=-1){
+           mFila.getColumnIndexOrThrow(COLUMN_INTERVALTYPE);
+           rec.settype(mFila.getString(intervaltypeIndex));
+       }
+        if (mFila.getColumnIndex(COLUMN_INTERVAL)!=-1){
+           mFila.getColumnIndexOrThrow(COLUMN_INTERVAL);
+           rec.setinterval(mFila.getInt(intervalIndex));
+       }}
+            return rec;
     }
 
 
