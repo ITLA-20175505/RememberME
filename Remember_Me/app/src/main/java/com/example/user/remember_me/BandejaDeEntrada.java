@@ -6,7 +6,6 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -17,31 +16,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.example.user.remember_me.Conexion.BaseDeDatos;
-import com.example.user.remember_me.Coordinador.CoordinadorRecurrence;
-import com.example.user.remember_me.Coordinador.CoordinadorTask;
-import com.example.user.remember_me.Logica.LogicaRecurrence;
-import com.example.user.remember_me.Logica.LogicaTask;
-import com.example.user.remember_me.ModeloVO.RecurrenceVO;
-import com.example.user.remember_me.ModeloVO.TaskVO;
-
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-
 public class BandejaDeEntrada extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-    public static BaseDeDatos mdb;
-    private CoordinadorRecurrence mCoordRecurrence;
-    private LogicaRecurrence mlogicaRecurrence;
-    private ArrayList<RecurrenceVO> mlistaRecurrence;
-    private RecurrenceVO mrecurrence;
-    private CoordinadorTask mcoordTask;
-    private LogicaTask mlogicaTask;
-    private ArrayList<TaskVO> mlistaTask;
-    private TaskVO mtask;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,54 +34,7 @@ public class BandejaDeEntrada extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-
-        mdb = new BaseDeDatos(this);
-        mdb.open();
-        /* Set Logica y Coordinador*/
-        mlogicaRecurrence = new LogicaRecurrence();
-        mCoordRecurrence = new CoordinadorRecurrence();
-        mlogicaRecurrence.setCoordinador(mCoordRecurrence);
-        mCoordRecurrence.setLogica(mlogicaRecurrence);
-
-        mcoordTask = new CoordinadorTask();
-        mlogicaTask = new LogicaTask();
-        mlogicaTask.setCoordinador(mcoordTask);
-        mcoordTask.setLogica(mlogicaTask);
-
-
-        mrecurrence = new RecurrenceVO();
-        mrecurrence.setname("KLK");
-        mrecurrence.setdescription("Mensual");
-        mrecurrence.setinterval(1);
-        mrecurrence.settype("Mensual");
-        mrecurrence.setidRecurrence(3);
-       // mCoordRecurrence.addRecurrence(mrecurrence);
-
-
-
-
-        mtask = new TaskVO();
-        mtask.setidTask(2);
-        mtask.setisDone(true);
-        mtask.setname("Nada");
-        mtask.setdescription("Bruh");
-        mtask.settaskDate("25/01/19");
-        mtask.setRecurrence(mrecurrence);
-      //  mlistaTask.add(mtask);
-
-
-    //    mrecurrence = mCoordRecurrence.buscarRecurrence(2);
-      //  Log.d("Database",mrecurrence.getname());
-        mlistaTask = mcoordTask.listaTask();
-
-    /*   mlistaRecurrence = mCoordRecurrence.listaRecurrence();
-
-      //  mcoordTask.addTask(mtask);
-        for(int i = 0;i<mlistaRecurrence.size();i++){
-          Log.wtf("Database",String.valueOf(mlistaRecurrence.get(i).getidRecurrence()));
-        }*/
     }
-
 
     @Override
     public void onBackPressed() {
@@ -116,27 +46,7 @@ public class BandejaDeEntrada extends AppCompatActivity
         }
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.bandeja_de_entrada, menu);
-        return true;
-    }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
