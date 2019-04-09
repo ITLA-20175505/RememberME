@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Nueva_Tarea_Fragment">
+    tools:context=".Nueva_Tarea_Fragment" >
 
     <!-- TODO: Update blank fragment layout -->
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -34,15 +34,16 @@
 
             <TextView
                 android:id="@+id/view_fecha"
-                android:layout_width="246dp"
+                android:layout_width="236dp"
                 android:layout_height="31dp"
                 android:layout_gravity="center" />
 
-            <ImageView
+            <ImageButton
                 android:id="@+id/btnFecha"
                 android:layout_width="66dp"
                 android:layout_height="46dp"
                 android:layout_gravity="right"
+                android:background="@color/transparent"
                 android:src="@drawable/ic_date" />
 
         </LinearLayout>
@@ -99,10 +100,11 @@
                 android:layout_height="30dp"
                 android:layout_gravity="center" />
 
-            <ImageView
+            <ImageButton
                 android:id="@+id/btnHoraInicial"
-                android:layout_width="55dp"
-                android:layout_height="46dp"
+                android:layout_width="57dp"
+                android:layout_height="55dp"
+                android:background="@color/transparent"
                 android:src="@drawable/ic_hora" />
         </LinearLayout>
 
@@ -130,10 +132,11 @@
                 android:layout_height="30dp"
                 android:layout_gravity="center" />
 
-            <ImageView
+            <ImageButton
                 android:id="@+id/btnHoraFinal"
-                android:layout_width="55dp"
-                android:layout_height="46dp"
+                android:layout_width="57dp"
+                android:layout_height="54dp"
+                android:background="@color/transparent"
                 android:src="@drawable/ic_hora" />
         </LinearLayout>
 

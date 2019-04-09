@@ -2,16 +2,22 @@ package com.example.user.remember_me;
 
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
@@ -20,18 +26,24 @@ import android.widget.TextView;
 import com.example.user.remember_me.Coordinador.CoordinadorTask;
 import com.example.user.remember_me.Logica.LogicaTask;
 
+import java.text.DateFormat;
 import java.util.Calendar;
 
 
 @RequiresApi(api = Build.VERSION_CODES.N)
-public class Nueva_Tarea_Fragment extends Fragment {
+public class Nueva_Tarea_Fragment extends Fragment implements DatePickerDialog.OnDateSetListener   {
 
     private Spinner mnt_spinner;
     private Spinner mest_spinner;
     private EditText mtxtNombreTarea;
     private EditText mtxtNota;
+    private TextView txtFecha;
     private CoordinadorTask mcoordTask;
-    private LogicaTask mlogicaTask
+    private LogicaTask mlogicaTask;
+    private  ImageButton btnFecha;
+
+
+
     @SuppressLint("WrongViewCast")
     @Nullable
     @Override
@@ -42,7 +54,6 @@ public class Nueva_Tarea_Fragment extends Fragment {
 
         mtxtNombreTarea = (EditText) view.findViewById(R.id.nom_tarea);
         mtxtNota = (EditText) view.findViewById(R.id.txt_nota);
-
 
         //Llenando el nt_spinner del array en el archivo strings
         String[] frecuencia;
@@ -60,14 +71,10 @@ public class Nueva_Tarea_Fragment extends Fragment {
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         mest_spinner.setAdapter(array_Adapter);
 
-
-
-
-
-
-
-        return view;
+return view;
     }
+
+
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -76,7 +83,13 @@ public class Nueva_Tarea_Fragment extends Fragment {
 
     }
 
+
+    @Override
+    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+
+
     }
+}
 
 
 

@@ -20,6 +20,10 @@
     <string name="btnGuardar">Guardar </string>
     <string name="txt_Datos">Datos personales </string>
 
+    <string name="titlulo_pickers">Obtener fecha y hora</string>
+
+    <string name="formato_fecha">dd/mm/yyyy</string>
+    <string name="formato_hora">hh:mm</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Nueva Tarea</string>

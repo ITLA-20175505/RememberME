@@ -113,12 +113,13 @@
             android:layout_width="117dp"
             android:layout_height="56dp" />
 
-        <ImageView
+        <ImageButton
             android:id="@+id/btnFecha"
-            android:layout_width="64dp"
-            android:layout_height="50dp"
+            android:layout_width="66dp"
+            android:layout_height="match_parent"
             android:layout_gravity="right"
-            android:src="@drawable/ic_date" />
+            android:background="@color/transparent"
+            android:src="@drawable/ic_date" /> />
     </LinearLayout>
     <LinearLayout
         android:layout_width="360dp"
