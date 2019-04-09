@@ -18,6 +18,7 @@
     <string name="notificar">Notificar </string>
     <string name="Estandar">Estandar </string>
     <string name="btnGuardar">Guardar </string>
+    <string name="txt_Datos">Datos personales </string>
 
 
     <!-- TODO: Remove or change this placeholder text -->
@@ -26,6 +27,13 @@
     <string name="atrasada">atrasada</string>
     <string name="TareaPendiente">pendiente</string>
     <string name="TareaRealizada">realizadas</string>
+    <string name="txtnom">Nombre </string>
+    <string name="txtapeliido">Apellido </string>
+    <string name="txtFechaNac">Fecha de nacimiento </string>
+    <string name="email">Email </string>
+    <string name="User">Usuario </string>
+    <string name="pass">Contraseña </string>
+    <string name="btnContinuar">Continuar</string>
 
     <string-array name="nt_spinner_array">
         <item>Nunca </item>
