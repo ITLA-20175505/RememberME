@@ -3,7 +3,10 @@ package com.example.user.remember_me.CRUD;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-
+/* Esta es una clase abstracta llamada CRUD (Create, Read, Update y Delete)
+que declara los metodos para luego ser implementados en las diferentes clases que se tenga.
+Ayuda mucho a reutilizar codio
+ */
 public abstract class ABCRUD {
     // Declarar Base De Datos
     public SQLiteDatabase mdb;

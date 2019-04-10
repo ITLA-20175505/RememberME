@@ -15,7 +15,10 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-
+/* Data Access Object o mejor conocido como DAO, este patron de diseño se implementa para tener una conexion con los gestores de
+de base de datos de manera mas independientes. Esta recibe los valores del modelo o del VO (value object) y se encarga de hacerlo
+llegar a la base de datos mediante querys preparados
+ */
 public class TaskDAO extends ABCRUD implements ITaskDAO,ISchemaTask {
     private Cursor mFila;
     private ContentValues mRegistro = new ContentValues();

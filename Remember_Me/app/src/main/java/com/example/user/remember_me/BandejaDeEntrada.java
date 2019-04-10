@@ -1,5 +1,6 @@
 package com.example.user.remember_me;
 
+import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
@@ -9,6 +10,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -19,25 +21,28 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import com.example.user.remember_me.Conexion.BaseDeDatos;
 import com.example.user.remember_me.Coordinador.CoordinadorRecurrence;
 import com.example.user.remember_me.Coordinador.CoordinadorTask;
+import com.example.user.remember_me.Coordinador.CoordinadorUser;
 import com.example.user.remember_me.Logica.LogicaRecurrence;
 import com.example.user.remember_me.Logica.LogicaTask;
+import com.example.user.remember_me.Logica.LogicaUser;
 import com.example.user.remember_me.ModeloVO.RecurrenceVO;
 import com.example.user.remember_me.ModeloVO.TaskVO;
+import com.example.user.remember_me.ModeloVO.UserVO;
 
 import java.util.ArrayList;
 
 public class BandejaDeEntrada extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-    private CoordinadorTask mcoordTask;
-    private TaskVO mtask;
-    private LogicaTask mLogicaTask;
-    private RecurrenceVO mrecurrence;
+    private CoordinadorUser mcoordUser;
+    private LogicaUser mlogicaUser;
+    private UserVO muser;
     private BaseDeDatos mDb;
-    private ArrayList<TaskVO> mlistaTask;
+    private TextView lblUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,14 +60,19 @@ public class BandejaDeEntrada extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        // Set Logica y Coordinador de Task
-        mcoordTask = new CoordinadorTask();
-        mLogicaTask = new LogicaTask();
-        mcoordTask.setLogica(mLogicaTask);
-        mLogicaTask.setCoordinador(mcoordTask);
+        //Set Logica y Coordinador de Usuario
+        mcoordUser = new CoordinadorUser();
+        mlogicaUser = new LogicaUser();
+        mcoordUser.setLogica(mlogicaUser);
+        mlogicaUser.setCoordinador(mcoordUser);
         // Abrir Base de Datos
         mDb = new BaseDeDatos(this);
         mDb.open();
+
+        muser = mcoordUser.getUser();
+
+        lblUser = (TextView) findViewById(R.id.nom_usuario);
+       // lblUser.setText(muser.getusername());
     }
 
     @Override

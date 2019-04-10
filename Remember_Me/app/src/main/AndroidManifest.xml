@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".Registro" >
+        <activity android:name=".ActivityLauncher" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -21,23 +21,21 @@
             android:name=".BandejaDeEntrada"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
+        <activity
+            android:name=".Registro"
+            android:label="@string/Registro"
+            android:theme="@style/AppTheme.NoActionBar">
 
+        </activity>
         <activity android:name=".calendarView">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".Clock" />
         <activity android:name=".elementos_prox_tareas" />
         <activity android:name=".elementos_tareas_atr" />
         <activity android:name=".elementos_tareas_real" />
     </application>
+
 </manifest>

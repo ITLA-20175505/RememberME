@@ -1,6 +1,7 @@
 package com.example.user.remember_me.Conexion;
 
 import android.content.Context;
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
@@ -8,11 +9,14 @@ import android.util.Log;
 import com.example.user.remember_me.ModeloDAO.RecurrenceDAO;
 import com.example.user.remember_me.ModeloDAO.TaskDAO;
 import com.example.user.remember_me.ModeloDAO.UserDAO;
+import com.example.user.remember_me.Registro;
 import com.example.user.remember_me.TableScheme.IRecurrenceSchema;
 import com.example.user.remember_me.TableScheme.ISchemaTask;
 import com.example.user.remember_me.TableScheme.ITaskHistorySchema;
 import com.example.user.remember_me.TableScheme.IUsuarioSchema;
-
+/* Este es el conector a la base de datos sqlie, esta hace uso directo del esquema de la base de datos y las clase DAO
+las cual es instanciada aqui como metodo statico para ser reutilizado en diversas ocasiones sin tener que ser instanciado otra vez
+ */
 public  class BaseDeDatos {
     private static final String TAG = "MyDatabase";
     private static final String DATABASE_NAME = "fdd.db";
@@ -56,6 +60,8 @@ public  class BaseDeDatos {
             db.execSQL("insert into Recurrence (name,description,intervaltype,interval) values ('Mensual','','Mes',1)");
 /*            Log.d("Database",ISchemaTask.trigger_before_insert);
             db.execSQL(ISchemaTask.trigger_before_insert);*/
+
+
            }
 
         @Override
