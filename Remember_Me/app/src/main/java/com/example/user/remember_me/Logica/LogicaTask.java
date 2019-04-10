@@ -1,7 +1,9 @@
 package com.example.user.remember_me.Logica;
 
+import android.content.Context;
 import android.database.sqlite.SQLiteConstraintException;
 import android.util.Log;
+import android.widget.Toast;
 
 
 import com.example.user.remember_me.Conexion.BaseDeDatos;
@@ -19,12 +21,15 @@ public void setCoordinador(CoordinadorTask coordTask){
     this.mCoordTask = coordTask;
 }
 
-public void validarAddTask(TaskVO task) {
+public void validarAddTask(TaskVO task, Context context) {
 
     boolean isSaved = BaseDeDatos.mTaskDAO.addTask(task);
 
     if (isSaved == true) {
+        Toast.makeText(context,"Tarea Registrada con exito",Toast.LENGTH_SHORT);
         Log.d("Database", "Registro de la tabla Task Anadido");
+    }else{
+        Toast.makeText(context,"No se pudo registrar la tarea",Toast.LENGTH_LONG);
     }
 
 }

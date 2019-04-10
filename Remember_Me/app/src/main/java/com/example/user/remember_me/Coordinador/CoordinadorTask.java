@@ -1,4 +1,5 @@
 package com.example.user.remember_me.Coordinador;
+import android.content.Context;
 import android.util.Log;
 
 
@@ -16,8 +17,8 @@ public class CoordinadorTask {
     public void setLogica(LogicaTask logicaTask){
         this.mLogicaTask = logicaTask;
     }
-    public void addTask(TaskVO task){
-        mLogicaTask.validarAddTask(task);
+    public void addTask(TaskVO task,Context context){
+        mLogicaTask.validarAddTask(task,context);
     }
     public void deleteTask(int id){
         mLogicaTask.validarDeleteTask(id);

@@ -23,10 +23,16 @@ import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.example.user.remember_me.Conexion.BaseDeDatos;
+import com.example.user.remember_me.Coordinador.CoordinadorRecurrence;
 import com.example.user.remember_me.Coordinador.CoordinadorTask;
+import com.example.user.remember_me.Logica.LogicaRecurrence;
 import com.example.user.remember_me.Logica.LogicaTask;
+import com.example.user.remember_me.ModeloVO.RecurrenceVO;
+import com.example.user.remember_me.ModeloVO.TaskVO;
 
 import java.text.DateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 
 
@@ -41,8 +47,14 @@ public class Nueva_Tarea_Fragment extends Fragment implements DatePickerDialog.O
     private CoordinadorTask mcoordTask;
     private LogicaTask mlogicaTask;
     private  ImageButton btnFecha;
-
-
+    private TaskVO mtask;
+    private ArrayList<RecurrenceVO> mlistaRecurrence;
+    private CoordinadorRecurrence mcoordRecurrence;
+    private LogicaRecurrence mlogicaRecurrence;
+    private RecurrenceVO mrecurrence;
+    private BaseDeDatos mDb;
+    private ArrayList<TaskVO> mlistaTask;
+    private Button mbtnSave;
 
     @SuppressLint("WrongViewCast")
     @Nullable
@@ -54,12 +66,32 @@ public class Nueva_Tarea_Fragment extends Fragment implements DatePickerDialog.O
 
         mtxtNombreTarea = (EditText) view.findViewById(R.id.nom_tarea);
         mtxtNota = (EditText) view.findViewById(R.id.txt_nota);
+        mbtnSave = view.findViewById(R.id.btn_guardar);
 
-        //Llenando el nt_spinner del array en el archivo strings
-        String[] frecuencia;
+
+        // Set Logica y Coordinador de Task
+        mcoordTask = new CoordinadorTask();
+        mlogicaTask = new LogicaTask();
+        mcoordTask.setLogica(mlogicaTask);
+        mlogicaTask.setCoordinador(mcoordTask);
+        // Set Logica y Coordinador de Recurrence
+        mcoordRecurrence = new CoordinadorRecurrence();
+        mlogicaRecurrence = new LogicaRecurrence();
+        mlogicaRecurrence.setCoordinador(mcoordRecurrence);
+        mcoordRecurrence.setLogica(mlogicaRecurrence);
+        //Abrir base de Datos
+        mDb = new BaseDeDatos(getContext());
+        mDb.open();
+
+
+        mlistaRecurrence = mcoordRecurrence.listaRecurrence();
+        ArrayList<String> frecuencia = new ArrayList<String>();
+        for(int i=0;i<mlistaRecurrence.size();i++){
+            frecuencia.add(mlistaRecurrence.get(i).getname());
+        }
+        // Llenar el spinner de frecuencia con la clase Recurrence
         mnt_spinner = (Spinner) view.findViewById(R.id.nt_spinner);
-        frecuencia = getResources().getStringArray(R.array.nt_spinner_array);
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getActivity().getApplicationContext(), android.R.layout.simple_list_item_1, frecuencia);
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getActivity().getApplicationContext(), android.R.layout.simple_list_item_1,frecuencia );
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         mnt_spinner.setAdapter(arrayAdapter);
 
@@ -70,7 +102,19 @@ public class Nueva_Tarea_Fragment extends Fragment implements DatePickerDialog.O
         ArrayAdapter<String> array_Adapter = new ArrayAdapter<String>(getActivity().getApplicationContext(), android.R.layout.simple_list_item_1, estandar);
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         mest_spinner.setAdapter(array_Adapter);
-
+    mbtnSave.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            mtask = new TaskVO();
+            mrecurrence = mcoordRecurrence.buscarRecurrence((int)mnt_spinner.getSelectedItemId() + 1);
+            mtask.setname(mtxtNombreTarea.getText().toString());
+            mtask.setdescription(mtxtNota.getText().toString());
+            mtask.setRecurrence(mrecurrence);
+            mtask.settaskDate("09/04/19");
+            mcoordTask.addTask(mtask,getContext());
+            mDb.close();
+        }
+    });
 return view;
     }
 
