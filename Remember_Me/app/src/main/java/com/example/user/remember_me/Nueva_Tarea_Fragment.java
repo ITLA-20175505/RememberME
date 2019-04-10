@@ -81,7 +81,6 @@ public class Nueva_Tarea_Fragment extends Fragment implements DatePickerDialog.O
         mcoordRecurrence.setLogica(mlogicaRecurrence);
         //Abrir base de Datos
         mDb = new BaseDeDatos(getContext());
-        mDb.open();
 
 
         mlistaRecurrence = mcoordRecurrence.listaRecurrence();
@@ -112,7 +111,6 @@ public class Nueva_Tarea_Fragment extends Fragment implements DatePickerDialog.O
             mtask.setRecurrence(mrecurrence);
             mtask.settaskDate("09/04/19");
             mcoordTask.addTask(mtask,getContext());
-            mDb.close();
         }
     });
 return view;

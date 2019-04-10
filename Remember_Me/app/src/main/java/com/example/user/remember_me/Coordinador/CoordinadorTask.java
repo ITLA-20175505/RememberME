@@ -1,6 +1,7 @@
 package com.example.user.remember_me.Coordinador;
 import android.content.Context;
 import android.util.Log;
+import android.widget.ArrayAdapter;
 
 
 import com.example.user.remember_me.Logica.LogicaTask;
@@ -31,5 +32,11 @@ public class CoordinadorTask {
     }
     public ArrayList<TaskVO> listaTask(){
         return mLogicaTask.validarListaTask();
+    }
+    public ArrayList<TaskVO> getDoneTask(){
+        return mLogicaTask.validarGetDoneTask();
+    }
+    public void setDoneTask(ArrayList<TaskVO> listaTask){
+        mLogicaTask.validarsetDoneTask(listaTask);
     }
 }

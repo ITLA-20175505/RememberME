@@ -15,4 +15,6 @@ public interface ITaskDAO {
     // delete Recurrence
      int deleteTask(int id);
      int updateTask(ArrayList<TaskVO> listaTask);
+     ArrayList<TaskVO> getDoneTask();
+     int setDoneTask(ArrayList<TaskVO> listaTask);
 }

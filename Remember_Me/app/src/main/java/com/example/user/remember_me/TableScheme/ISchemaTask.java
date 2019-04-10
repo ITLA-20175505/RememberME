@@ -21,7 +21,7 @@ public interface ISchemaTask {
             COLUMN_DATE + " date null," + COLUMN_NEXTDATE + " date null," + COLUMN_RECURRENCE + " int  null, "+
             COLUMN_ISCANCELLED + " boolean default 0," + COLUMN_DONE + " int default 0, " +
             CONSTRAINT_FOREIGNKEY + ")";
-    String [] COLUMNTASK = new String[]{COLUMN_IDTASK,COLUMN_NAME,COLUMN_DESCRIPTION};
+    String [] taskColumn = new String[]{COLUMN_IDTASK,COLUMN_NAME,COLUMN_DESCRIPTION,COLUMN_DATE};
   /*  String trigger_update_date = "Create trigger trigger_update_date before update on " + taskTable +
             " when " + COLUMN_DONE + " = 1 begin update "+taskTable + "  set " +COLUMN_DATE +" = "+COLUMN_NEXTDATE +", " + COLUMN_DONE
             + "  = 0;" +

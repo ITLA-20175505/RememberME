@@ -46,6 +46,11 @@ public void validarUpdateTask(ArrayList<TaskVO> listaTask){
     int isUpdated = BaseDeDatos.mTaskDAO.updateTask(listaTask);
     if(isUpdated !=0){
         Log.d("Database","Se actualizaron " + isUpdated + " registros");
+    }}
+    public void validarsetDoneTask(ArrayList<TaskVO> listaTask){
+      int isSetDone = BaseDeDatos.mTaskDAO.setDoneTask(listaTask);
+      if (isSetDone !=0){
+          Log.d("Database","Se marcaron " + isSetDone + " tareas realizadas");
     }
 }
 public TaskVO validarBuscarTask(int id){
@@ -58,13 +63,16 @@ public TaskVO validarBuscarTask(int id){
         return null;
     }
 }
+public ArrayList<TaskVO> validarGetDoneTask(){
+    listaTask = BaseDeDatos.mTaskDAO.getDoneTask();
+    if (listaTask != null){
+        Log.d("Database","Lista De Tareas Realizadas creada");
+    }return listaTask;
+}
 public ArrayList<TaskVO> validarListaTask() {
-
     listaTask = BaseDeDatos.mTaskDAO.fetchAllTask();
-    Log.d("Database", "Lista Task creada");
-    return listaTask;
-}
-}
-
-
-
+    if (listaTask != null) {
+        Log.d("Database", "Lista Task creada");}
+            return listaTask;
+        }
+    }

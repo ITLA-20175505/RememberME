@@ -8,6 +8,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -17,9 +18,26 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageButton;
+
+import com.example.user.remember_me.Conexion.BaseDeDatos;
+import com.example.user.remember_me.Coordinador.CoordinadorRecurrence;
+import com.example.user.remember_me.Coordinador.CoordinadorTask;
+import com.example.user.remember_me.Logica.LogicaRecurrence;
+import com.example.user.remember_me.Logica.LogicaTask;
+import com.example.user.remember_me.ModeloVO.RecurrenceVO;
+import com.example.user.remember_me.ModeloVO.TaskVO;
+
+import java.util.ArrayList;
 
 public class BandejaDeEntrada extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+    private CoordinadorTask mcoordTask;
+    private TaskVO mtask;
+    private LogicaTask mLogicaTask;
+    private RecurrenceVO mrecurrence;
+    private BaseDeDatos mDb;
+    private ArrayList<TaskVO> mlistaTask;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +54,15 @@ public class BandejaDeEntrada extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        // Set Logica y Coordinador de Task
+        mcoordTask = new CoordinadorTask();
+        mLogicaTask = new LogicaTask();
+        mcoordTask.setLogica(mLogicaTask);
+        mLogicaTask.setCoordinador(mcoordTask);
+        // Abrir Base de Datos
+        mDb = new BaseDeDatos(this);
+        mDb.open();
     }
 
     @Override

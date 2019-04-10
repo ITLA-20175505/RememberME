@@ -95,11 +95,57 @@ public class TaskDAO extends ABCRUD implements ITaskDAO,ISchemaTask {
                 Log.d("Database",e.getMessage());
                 return u;
             }}return u;}
+
+    @Override
+    public ArrayList<TaskVO> getDoneTask() {
+        final String selectionArgs[]   = {String.valueOf(0),String.valueOf(1)};
+        final String selection = COLUMN_ISCANCELLED +" = ? AND " + COLUMN_DONE + " = ?" ;
+        ArrayList<TaskVO> listaTask = new ArrayList<>();
+        mFila =super.consulta(taskTable,taskColumn,selection,selectionArgs,COLUMN_IDTASK);
+        if(mFila!=null){
+            mFila.moveToFirst();
+            while (!mFila.isAfterLast()){
+                listaTask.add(cursorToEntity(mFila));
+                mFila.moveToNext();
+            }mFila.close();
+        } return listaTask;
+    }
+    public ArrayList<TaskVO> getnextTasks() {
+        final String selectionArgs[]   = {String.valueOf(0),String.valueOf(0)};
+        final String selection = COLUMN_ISCANCELLED +" = ? AND " + COLUMN_DONE + " = ?" ;
+        ArrayList<TaskVO> listaTask = new ArrayList<>();
+        mFila =super.consulta(taskTable,taskColumn,selection,selectionArgs,COLUMN_DATE);
+        if(mFila!=null){
+            mFila.moveToFirst();
+            while (!mFila.isAfterLast()){
+                listaTask.add(cursorToEntity(mFila));
+                mFila.moveToNext();
+            }mFila.close();
+        } return listaTask;
+    }
+
+
+    @Override
+    public int setDoneTask(ArrayList<TaskVO> listaTask) {
+        int u = 0;
+        for (int i=0;i<listaTask.size();i++){
+           ContentValues doneTask = new ContentValues();
+           Log.d("Database",String.valueOf(listaTask.get(i).getisDone()));
+           doneTask.put(COLUMN_DONE,listaTask.get(i).getisDone());
+            final String [] selectionArgs = {String.valueOf(listaTask.get(i).getidTask()),String.valueOf(0),String.valueOf(0)};
+            final String selection = COLUMN_IDTASK + " = ? AND " + COLUMN_ISCANCELLED +" = ? AND " + COLUMN_DONE + " = ?";
+            try{
+                super.update(taskTable,doneTask,selection,selectionArgs);
+                u++;
+            }  catch (SQLiteConstraintException e){
+                Log.d("Database",e.getMessage());
+                return u;
+            }}return u;}
     @Override
     public TaskVO fetchById(int id) {
         final String selectionArgs[]   = {String.valueOf(id),String.valueOf(0)};
         final String selection = COLUMN_IDTASK + " = ? AND " + COLUMN_ISCANCELLED +" = ?";
-            mFila =super.consulta(taskTable,COLUMNTASK,selection,selectionArgs,COLUMN_IDTASK);
+            mFila =super.consulta(taskTable,taskColumn,selection,selectionArgs,COLUMN_IDTASK);
             if(mFila!=null){
                 mFila.moveToFirst();
                 while (!mFila.isAfterLast()){
@@ -109,17 +155,19 @@ public class TaskDAO extends ABCRUD implements ITaskDAO,ISchemaTask {
             } return mtask;
         }
 
+
     @Override
     public ArrayList<TaskVO> fetchAllTask() {
         ArrayList<TaskVO> listaTarea = new ArrayList<TaskVO>();
         String[] selectionArgs = {String.valueOf(0)};
         String selection = COLUMN_ISCANCELLED + " = ?";
-        mFila = super.consulta(taskTable,COLUMNTASK,selection,selectionArgs,COLUMN_IDTASK);
+        mFila = super.consulta(taskTable,taskColumn,selection,selectionArgs,COLUMN_IDTASK);
         if(mFila!= null){
             mFila.moveToFirst();
             while(!mFila.isAfterLast()){
                 mtask = cursorToEntity(mFila);
                 listaTarea.add(mtask);
+                mFila.moveToNext();
             }mFila.close();
         }return listaTarea;
     }

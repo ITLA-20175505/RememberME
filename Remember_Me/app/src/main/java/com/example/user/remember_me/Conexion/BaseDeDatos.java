@@ -10,10 +10,11 @@ import com.example.user.remember_me.ModeloDAO.TaskDAO;
 import com.example.user.remember_me.TableScheme.IRecurrenceSchema;
 import com.example.user.remember_me.TableScheme.ISchemaTask;
 import com.example.user.remember_me.TableScheme.ITaskHistorySchema;
+import com.example.user.remember_me.TableScheme.IUsuarioSchema;
 
 public  class BaseDeDatos {
     private static final String TAG = "MyDatabase";
-    private static final String DATABASE_NAME = "whatever.db";
+    private static final String DATABASE_NAME = "well.db";
     private static final int DATABASE_VERSION = 1;
     private DatabaseHelper mDbHelper;
     private final Context mContext;
@@ -45,7 +46,12 @@ public  class BaseDeDatos {
             db.execSQL(IRecurrenceSchema.createTable);
             db.execSQL(ISchemaTask.createTable);
             db.execSQL(ITaskHistorySchema.createTable);
-
+            db.execSQL(IUsuarioSchema.createTable);
+            db.execSQL("insert into Recurrence (name,description,intervaltype,interval) values ('Diario','','Dia',1)");
+            db.execSQL("insert into Recurrence (name,description,intervaltype,interval) values ('Interdiario','','Dia',2)");
+            db.execSQL("insert into Recurrence (name,description,intervaltype,interval) values ('Semanal','','Semana',1)");
+            db.execSQL("insert into Recurrence (name,description,intervaltype,interval) values ('Quincenal','','Semana',1)");
+            db.execSQL("insert into Recurrence (name,description,intervaltype,interval) values ('Mensual','','Mes',1)");
 /*            Log.d("Database",ISchemaTask.trigger_before_insert);
             db.execSQL(ISchemaTask.trigger_before_insert);*/
            }
@@ -58,11 +64,7 @@ public  class BaseDeDatos {
             db.execSQL("DROP TABLE IF EXISTS " + IRecurrenceSchema.recurrenceTable);
             db.execSQL("DROP TABLE IF EXISTS " + ISchemaTask.taskTable);
             db.execSQL("DROP TRIGGER IF EXISTS " + ISchemaTask.TRIGGER_INSERT);
-            db.execSQL("insert into Recurrence (name,description,intervaltype,interval) values ('Diario','','Dia',1)");
-            db.execSQL("insert into Recurrence (name,description,intervaltype,interval) values ('Interdiario','','Dia',2)");
-            db.execSQL("insert into Recurrence (name,description,intervaltype,interval) values ('Semanal','','Semana',1)");
-            db.execSQL("insert into Recurrence (name,description,intervaltype,interval) values ('Quincenal','','Semana',1)");
-            db.execSQL("insert into Recurrence (name,description,intervaltype,interval) values ('Mensual','','Mes',1)");
+
             onCreate(db);
         }
     }
