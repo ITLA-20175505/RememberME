@@ -61,8 +61,6 @@ public class BandejaDeEntrada extends AppCompatActivity
             fm = new Nueva_Tarea_Fragment();
         } else if (id == R.id.nav_tarea_atrasada) {
             fm = new Tareas_Atrasadas_Fragment();
-        } else if (id == R.id.nav_tarea_pendiente) {
-            fm = new Tareas_Pendientes_Fragment();
         } else if (id == R.id.nav_tarea_realizada) {
             fm = new Tareas_realizadas_Fragment();
         }else if (id == R.id.nav_perfil) {

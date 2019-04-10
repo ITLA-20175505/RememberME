@@ -17,10 +17,7 @@
             android:id="@+id/nav_tarea_atrasada"
             android:icon="@drawable/ic_menu_atrasada"
             android:title="@string/tareas_atrasadas" />
-        <item
-            android:id="@+id/nav_tarea_pendiente"
-            android:icon="@drawable/ic_menu_pendiente"
-            android:title="@string/tareas_pendientes" />
+
         <item
             android:id="@+id/nav_proximas_tareas"
             android:icon="@drawable/ic_next"
