@@ -26,7 +26,7 @@ public class Proximas_tareas extends Fragment {
     private ArrayList<TaskVO> mlistaTarea;
     private CoordinadorTask mcoordTask;
     private LogicaTask mlogicaTask;
-    List<Pair> mPairs = new ArrayList<Pair>();
+
 
     @Nullable
     @Override
