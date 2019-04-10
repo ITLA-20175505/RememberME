@@ -7,6 +7,7 @@ import android.util.Log;
 
 import com.example.user.remember_me.ModeloDAO.RecurrenceDAO;
 import com.example.user.remember_me.ModeloDAO.TaskDAO;
+import com.example.user.remember_me.ModeloDAO.UserDAO;
 import com.example.user.remember_me.TableScheme.IRecurrenceSchema;
 import com.example.user.remember_me.TableScheme.ISchemaTask;
 import com.example.user.remember_me.TableScheme.ITaskHistorySchema;
@@ -20,13 +21,14 @@ public  class BaseDeDatos {
     private final Context mContext;
     public static RecurrenceDAO mRecurrenceDAO;
     public static TaskDAO mTaskDAO;
-
+    public static UserDAO mUserDAO;
     public BaseDeDatos open(){
         mDbHelper = new DatabaseHelper(mContext);
         SQLiteDatabase mdb = mDbHelper.getWritableDatabase();
 
         mRecurrenceDAO = new RecurrenceDAO(mdb);
         mTaskDAO = new TaskDAO(mdb);
+        mUserDAO = new UserDAO(mdb);
         return this;
     }
     public void close(){

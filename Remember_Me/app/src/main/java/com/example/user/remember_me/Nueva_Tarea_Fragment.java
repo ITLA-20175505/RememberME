@@ -138,6 +138,8 @@ public class Nueva_Tarea_Fragment extends Fragment implements DatePickerDialog.O
             mtask.settaskDate("1/04/19");
             Toast.makeText(getActivity(),"Hola",Toast.LENGTH_LONG);
             mcoordTask.addTask(mtask,getContext());
+            mtxtNombreTarea.setText("");
+            mtxtNota.setText("");
         }
     });
 return view;
