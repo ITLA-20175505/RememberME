@@ -9,8 +9,27 @@ public class TaskVO {
     private boolean mIsCancelled;
     private String mtaskDate;
     private String mnextDate;
+    private String mstartTime;
+    private String mendTime;
     private boolean misDone;
     private RecurrenceVO mRecurrence;
+    public String getstartTime() {
+        return mstartTime;
+    }
+
+    public void setstartTime(String startTime) {
+        this.mstartTime = startTime;
+    }
+
+    public String getendTime() {
+        return mendTime;
+    }
+
+    public void setendTime(String endTime) {
+        this.mendTime = endTime;
+    }
+
+
     /* Metodos Getter y Setter de la clase Task */
     public int getidTask() {
         return midTask;

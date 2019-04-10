@@ -20,6 +20,6 @@ public class DatePickerFragment extends DialogFragment {
        int  day = calendario.get(Calendar.DAY_OF_MONTH);
         Intent i = new Intent();
         i.putExtra("nose","nada");
-        return new DatePickerDialog(getActivity(),(DatePickerDialog.OnDateSetListener) getActivity(), year, month, day);
+        return new DatePickerDialog(getActivity(),(EditSessionActivity)getActivity(), year, month, day);
     }
 }

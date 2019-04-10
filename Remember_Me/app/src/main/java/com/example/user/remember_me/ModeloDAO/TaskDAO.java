@@ -200,6 +200,8 @@ public class TaskDAO extends ABCRUD implements ITaskDAO,ISchemaTask {
          mRegistro.put(COLUMN_DATE,task.gettaskDate());
          mRegistro.put(COLUMN_RECURRENCE,task.getRecurrence().getidRecurrence());
          mRegistro.put(COLUMN_NEXTDATE,task.getnextDate());
+         mRegistro.put(COLUMN_STARTIME,task.getstartTime());
+         mRegistro.put(COLUMN_ENDTIME,task.getendTime());
          mRegistro.put(COLUMN_DONE,0);
      }
     private ContentValues getValues(){
