@@ -24,7 +24,8 @@ public class calendarView extends AppCompatActivity implements DatePickerDialog.
     Button ok;
     TextView paVer;
     DatePicker picker;
-
+    TextView txt_fecha;
+    ImageButton btnAtras;
 
     @SuppressLint("WrongViewCast")
     @Override
@@ -58,13 +59,12 @@ public class calendarView extends AppCompatActivity implements DatePickerDialog.
     }
 
  public void Atras(View v){
-     Bundle bundle = new Bundle();
-
-     Intent i = new Intent(v.getContext(), Nueva_Tarea_Fragment.class);
-     TextView fecha = (TextView) findViewById(R.id.paVer);
-     String texto = fecha.getText().toString();
-     bundle.putString("fecha", texto);
-    i.putExtras(bundle);
-     startActivity(i);
- }
-}
+     @SuppressLint("WrongViewCast") ImageButton btnAtras = (ImageButton) findViewById(R.id.btnAtras);
+     btnAtras.setOnClickListener(new View.OnClickListener() {
+         @Override
+         public void onClick(View v) {
+             Intent intent = new Intent(String.valueOf(Nueva_Tarea_Fragment.class));
+             startActivity(intent);
+         }
+     });
+}}

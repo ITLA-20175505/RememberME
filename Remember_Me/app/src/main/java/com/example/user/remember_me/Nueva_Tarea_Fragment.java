@@ -2,6 +2,7 @@ package com.example.user.remember_me;
 
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -36,18 +37,22 @@ import com.example.user.remember_me.ModeloVO.RecurrenceVO;
 import com.example.user.remember_me.ModeloVO.TaskVO;
 
 import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Locale;
+
+import static java.util.Calendar.YEAR;
 
 
 @RequiresApi(api = Build.VERSION_CODES.N)
-public class Nueva_Tarea_Fragment extends Fragment implements DatePickerDialog.OnDateSetListener   {
+public class Nueva_Tarea_Fragment extends Fragment implements DatePickerDialog.OnDateSetListener {
 
     private Spinner mnt_spinner;
     private Spinner mest_spinner;
     private EditText mtxtNombreTarea;
     private EditText mtxtNota;
-    private TextView txtFecha;
+    private TextView view_fecha;
     private Button mbtnSave;
     private LinearLayout mHorainicial;
     private LinearLayout mHoraFinal;
@@ -64,9 +69,24 @@ public class Nueva_Tarea_Fragment extends Fragment implements DatePickerDialog.O
     private BaseDeDatos mDb;
     private ArrayList<TaskVO> mlistaTask;
 
+    private int day, month,year;
 
 
-    @SuppressLint("WrongViewCast")
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+
+        btnFecha.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DialogFragment newFragment = new DatePickerFragment();
+                newFragment.show(getFragmentManager(), "datePicker");
+
+            }
+        });
+    }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -142,25 +162,27 @@ public class Nueva_Tarea_Fragment extends Fragment implements DatePickerDialog.O
             mtxtNota.setText("");
         }
     });
+
+
+
 return view;
     }
 
 
-
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-
-
-    }
-
-
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-
+        Calendar c =Calendar.getInstance();
+        c.set(Calendar.YEAR,year);
+        c.set(Calendar.MONTH, month);
+        c.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+        String formato = DateFormat.getDateInstance().format(c.getTime());
+        TextView verFecha = (TextView) view.findViewById(R.id.view_fecha);
+        verFecha.setText(formato);
 
     }
-}
+    }
+
 
 
 
