@@ -28,8 +28,7 @@ public class Tareas_realizadas_Fragment extends Fragment {
     private ArrayList<TaskVO> mlistaTarea;
     private CoordinadorTask mcoordTask;
     private LogicaTask mlogicaTask;
-    HashMap<String,String> listadoTareasRealizada;
-    List<Pair> mPairs = new ArrayList<Pair>();
+   List<Pair> mPairs = new ArrayList<Pair>();
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -41,22 +40,16 @@ public class Tareas_realizadas_Fragment extends Fragment {
       mcoordTask.setLogica(mlogicaTask);
 
         mlistview = (ListView) view.findViewById(R.id.list_tareas_real);
-        TaskVO task = new TaskVO();
-        task.setidTask(1);
-        task.setisDone(true);
-        ArrayList<TaskVO> doneTask = new ArrayList<>();
-        doneTask.add(task);
-        mcoordTask.setDoneTask(doneTask);
 
         mlistaTarea = mcoordTask.getDoneTask();
         Log.d("Database",String.valueOf(mlistaTarea.size()));
-        listadoTareasRealizada = new HashMap<String, String>();
+
         if (mlistaTarea.isEmpty()) {
 
             Pair pair = new Pair("No hay","Tareas Realizadas");
             mPairs.add(pair);}
         for (int i = 0;i<mlistaTarea.size();i++){
-           Pair pair = new Pair(mlistaTarea.get(i).getname(),mlistaTarea.get(i).gettaskDate());
+           Pair pair = new Pair(mlistaTarea.get(i).gettaskDate(),mlistaTarea.get(i).getname());
            mPairs.add(pair);
         }
         ArrayAdapter<Pair> arrayAdapter = new ArrayAdapter<Pair>(getActivity(),android.R.layout.simple_list_item_1,

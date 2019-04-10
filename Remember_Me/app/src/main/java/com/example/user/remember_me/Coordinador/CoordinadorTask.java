@@ -39,4 +39,10 @@ public class CoordinadorTask {
     public void setDoneTask(ArrayList<TaskVO> listaTask){
         mLogicaTask.validarsetDoneTask(listaTask);
     }
+    public ArrayList<TaskVO> getNextTask(){
+        return mLogicaTask.validarNextTasks();
+    }
+    public ArrayList<TaskVO> getLateTask(){
+        return mLogicaTask.validarLateTasks();
+    }
 }

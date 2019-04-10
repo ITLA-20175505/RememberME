@@ -2,6 +2,7 @@ package com.example.user.remember_me;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -17,7 +18,8 @@ public class DatePickerFragment extends DialogFragment {
         int year = calendario.get(Calendar.YEAR);
        int  month = calendario.get(Calendar.MONTH);
        int  day = calendario.get(Calendar.DAY_OF_MONTH);
-
+        Intent i = new Intent();
+        i.putExtra("nose","nada");
         return new DatePickerDialog(getActivity(),(DatePickerDialog.OnDateSetListener) getActivity(), year, month, day);
     }
 }

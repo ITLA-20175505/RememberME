@@ -14,7 +14,7 @@ import com.example.user.remember_me.TableScheme.IUsuarioSchema;
 
 public  class BaseDeDatos {
     private static final String TAG = "MyDatabase";
-    private static final String DATABASE_NAME = "well.db";
+    private static final String DATABASE_NAME = "fdd.db";
     private static final int DATABASE_VERSION = 1;
     private DatabaseHelper mDbHelper;
     private final Context mContext;

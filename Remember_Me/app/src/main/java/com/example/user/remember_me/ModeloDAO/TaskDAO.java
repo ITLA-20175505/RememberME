@@ -52,7 +52,10 @@ public class TaskDAO extends ABCRUD implements ITaskDAO,ISchemaTask {
                 idDescriptionIndex = mFila.getColumnIndexOrThrow(COLUMN_DESCRIPTION);
                 task.setdescription(mFila.getString(idDescriptionIndex));
             }
-        }
+            if (mFila.getColumnIndex(COLUMN_DATE)!= -1) {
+                taskDateIndex = mFila.getColumnIndexOrThrow(COLUMN_DATE);
+                task.settaskDate(mFila.getString(taskDateIndex));
+            }}
         return task;
     }
 
@@ -114,6 +117,20 @@ public class TaskDAO extends ABCRUD implements ITaskDAO,ISchemaTask {
         final String selectionArgs[]   = {String.valueOf(0),String.valueOf(0)};
         final String selection = COLUMN_ISCANCELLED +" = ? AND " + COLUMN_DONE + " = ?" ;
         ArrayList<TaskVO> listaTask = new ArrayList<>();
+        mFila =super.consulta(taskTable,taskDateTimaColumn,selection,selectionArgs,COLUMN_DATE);
+        if(mFila!=null){
+            mFila.moveToFirst();
+            while (!mFila.isAfterLast()){
+                listaTask.add(cursorToEntity(mFila));
+                mFila.moveToNext();
+            }mFila.close();
+        } return listaTask;
+    }
+    public ArrayList<TaskVO> getLateTasks() {
+        final String selectionArgs[]   = {String.valueOf(0),String.valueOf(0)};
+        final String selection = COLUMN_ISCANCELLED +" = ? AND " + COLUMN_DONE + " = ? AND " + COLUMN_DATE +
+                " < datetime('now')";
+        ArrayList<TaskVO> listaTask = new ArrayList<>();
         mFila =super.consulta(taskTable,taskColumn,selection,selectionArgs,COLUMN_DATE);
         if(mFila!=null){
             mFila.moveToFirst();
@@ -124,13 +141,11 @@ public class TaskDAO extends ABCRUD implements ITaskDAO,ISchemaTask {
         } return listaTask;
     }
 
-
     @Override
     public int setDoneTask(ArrayList<TaskVO> listaTask) {
         int u = 0;
         for (int i=0;i<listaTask.size();i++){
            ContentValues doneTask = new ContentValues();
-           Log.d("Database",String.valueOf(listaTask.get(i).getisDone()));
            doneTask.put(COLUMN_DONE,listaTask.get(i).getisDone());
             final String [] selectionArgs = {String.valueOf(listaTask.get(i).getidTask()),String.valueOf(0),String.valueOf(0)};
             final String selection = COLUMN_IDTASK + " = ? AND " + COLUMN_ISCANCELLED +" = ? AND " + COLUMN_DONE + " = ?";

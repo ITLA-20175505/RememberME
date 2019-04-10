@@ -17,11 +17,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.user.remember_me.Conexion.BaseDeDatos;
 import com.example.user.remember_me.Coordinador.CoordinadorRecurrence;
@@ -44,6 +48,11 @@ public class Nueva_Tarea_Fragment extends Fragment implements DatePickerDialog.O
     private EditText mtxtNombreTarea;
     private EditText mtxtNota;
     private TextView txtFecha;
+    private Button mbtnSave;
+    private LinearLayout mHorainicial;
+    private LinearLayout mHoraFinal;
+    private Switch mswitchDia;
+
     private CoordinadorTask mcoordTask;
     private LogicaTask mlogicaTask;
     private  ImageButton btnFecha;
@@ -54,7 +63,8 @@ public class Nueva_Tarea_Fragment extends Fragment implements DatePickerDialog.O
     private RecurrenceVO mrecurrence;
     private BaseDeDatos mDb;
     private ArrayList<TaskVO> mlistaTask;
-    private Button mbtnSave;
+
+
 
     @SuppressLint("WrongViewCast")
     @Nullable
@@ -67,7 +77,23 @@ public class Nueva_Tarea_Fragment extends Fragment implements DatePickerDialog.O
         mtxtNombreTarea = (EditText) view.findViewById(R.id.nom_tarea);
         mtxtNota = (EditText) view.findViewById(R.id.txt_nota);
         mbtnSave = view.findViewById(R.id.btn_guardar);
+        mHoraFinal = (LinearLayout) view.findViewById(R.id.horafinal);
+        mHorainicial = (LinearLayout) view.findViewById(R.id.horainicial);
+        mswitchDia = (Switch) view.findViewById(R.id.switch2);
 
+        mswitchDia.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked == true){
+                    mHoraFinal.setVisibility(View.INVISIBLE);
+                    mHorainicial.setVisibility(View.INVISIBLE);
+                }else{
+                    mHoraFinal.setVisibility(View.VISIBLE);
+                    mHorainicial.setVisibility(View.VISIBLE);
+
+                }
+            }
+        });
 
         // Set Logica y Coordinador de Task
         mcoordTask = new CoordinadorTask();
@@ -109,7 +135,8 @@ public class Nueva_Tarea_Fragment extends Fragment implements DatePickerDialog.O
             mtask.setname(mtxtNombreTarea.getText().toString());
             mtask.setdescription(mtxtNota.getText().toString());
             mtask.setRecurrence(mrecurrence);
-            mtask.settaskDate("09/04/19");
+            mtask.settaskDate("1/04/19");
+            Toast.makeText(getActivity(),"Hola",Toast.LENGTH_LONG);
             mcoordTask.addTask(mtask,getContext());
         }
     });

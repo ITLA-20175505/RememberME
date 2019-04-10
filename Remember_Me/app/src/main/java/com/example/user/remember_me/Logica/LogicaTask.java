@@ -3,6 +3,7 @@ package com.example.user.remember_me.Logica;
 import android.content.Context;
 import android.database.sqlite.SQLiteConstraintException;
 import android.util.Log;
+import android.widget.BaseAdapter;
 import android.widget.Toast;
 
 
@@ -22,16 +23,18 @@ public void setCoordinador(CoordinadorTask coordTask){
 }
 
 public void validarAddTask(TaskVO task, Context context) {
+    if (task.getname().isEmpty() || task.gettaskDate().isEmpty() || task.getRecurrence().getidRecurrence() < 0 ){
+        Toast.makeText(context,"Debe Completar los requisitos",Toast.LENGTH_SHORT).show();
+    }else {
+        boolean isSaved = BaseDeDatos.mTaskDAO.addTask(task);
 
-    boolean isSaved = BaseDeDatos.mTaskDAO.addTask(task);
-
-    if (isSaved == true) {
-        Toast.makeText(context,"Tarea Registrada con exito",Toast.LENGTH_SHORT);
-        Log.d("Database", "Registro de la tabla Task Anadido");
-    }else{
-        Toast.makeText(context,"No se pudo registrar la tarea",Toast.LENGTH_LONG);
+        if (isSaved == true) {
+            Toast.makeText(context, "Tarea Registrada con exito", Toast.LENGTH_LONG).show();
+            Log.d("Database", "Registro de la tabla Task Anadido");
+        } else {
+            Toast.makeText(context, "No se pudo registrar la tarea", Toast.LENGTH_SHORT).show();
+        }
     }
-
 }
 
 public void validarDeleteTask(int id){
@@ -53,6 +56,7 @@ public void validarUpdateTask(ArrayList<TaskVO> listaTask){
           Log.d("Database","Se marcaron " + isSetDone + " tareas realizadas");
     }
 }
+
 public TaskVO validarBuscarTask(int id){
     mTask = BaseDeDatos.mTaskDAO.fetchById(id);
     if(mTask!= null){
@@ -67,12 +71,41 @@ public ArrayList<TaskVO> validarGetDoneTask(){
     listaTask = BaseDeDatos.mTaskDAO.getDoneTask();
     if (listaTask != null){
         Log.d("Database","Lista De Tareas Realizadas creada");
-    }return listaTask;
+        return listaTask;}
+        else{
+            Log.d("Database","Np hay datos para mostrar");
+            return null;
+        }
+    }
+
+public ArrayList<TaskVO> validarNextTasks() {
+    listaTask = BaseDeDatos.mTaskDAO.getnextTasks();
+    if (listaTask != null) {
+        Log.d("Database", "Lista de Tareas Proximas creada");
+        return listaTask;
+    } else {
+        Log.d("Database", "Np hay datos para mostrar");
+        return null;
+    }
 }
+    public ArrayList<TaskVO> validarLateTasks() {
+        listaTask = BaseDeDatos.mTaskDAO.getLateTasks();
+        if (listaTask != null) {
+            Log.d("Database", "Lista de Tareas Atrasadas creada");
+            return listaTask;
+        } else {
+            Log.d("Database", "Np hay datos para mostrar");
+            return null;
+        }
+    }
 public ArrayList<TaskVO> validarListaTask() {
     listaTask = BaseDeDatos.mTaskDAO.fetchAllTask();
     if (listaTask != null) {
-        Log.d("Database", "Lista Task creada");}
-            return listaTask;
-        }
+        Log.d("Database", "Lista Task creada");
+    return listaTask;}
+        else{
+        Log.d("Database","Np hay datos para mostrar");
+        return null;
+    }}
+
     }
