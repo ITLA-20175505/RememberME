@@ -150,16 +150,16 @@ public class TaskDAO extends ABCRUD implements ITaskDAO,ISchemaTask {
                 mCalendar.add(Calendar.DAY_OF_MONTH, task.getRecurrence().getinterval());
                 break;
             case 2:
-                mCalendar.add(Calendar.WEEK_OF_MONTH,  task.getRecurrence().getinterval());
+                mCalendar.add(Calendar.DAY_OF_MONTH,  task.getRecurrence().getinterval());
                 break;
             case 3:
                 mCalendar.add(Calendar.WEEK_OF_MONTH,  task.getRecurrence().getinterval());
                 break;
             case 4:
-                mCalendar.add(Calendar.MONTH,  task.getRecurrence().getinterval());
+                mCalendar.add(Calendar.WEEK_OF_MONTH,  task.getRecurrence().getinterval());
                 break;
             case 5:
-                mCalendar.add(Calendar.YEAR,  task.getRecurrence().getinterval());
+                mCalendar.add(Calendar.MONTH,  task.getRecurrence().getinterval());
                 break;
         }
         task.setnextDate(mformato.format(mCalendar.getTime()));
