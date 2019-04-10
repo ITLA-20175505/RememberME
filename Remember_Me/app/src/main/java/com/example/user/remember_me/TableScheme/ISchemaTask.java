@@ -26,8 +26,8 @@ public interface ISchemaTask {
             " when " + COLUMN_DONE + " = 1 begin update "+taskTable + "  set " +COLUMN_DATE +" = "+COLUMN_NEXTDATE +", " + COLUMN_DONE
             + "  = 0;" +
             " end";*/
-    String trigger_before_insert = "Create trigger " + TRIGGER_INSERT + " before insert on " + taskTable +
+  /*  String trigger_before_insert = "Create trigger " + TRIGGER_INSERT + " before insert on " + taskTable +
           " Begin update nextDate = Date(NEW." + COLUMN_DATE + ", '+1 Days') where " + COLUMN_IDTASK +
-          " = NEW."+COLUMN_IDTASK;
+          " = NEW."+COLUMN_IDTASK;*/
 
 }

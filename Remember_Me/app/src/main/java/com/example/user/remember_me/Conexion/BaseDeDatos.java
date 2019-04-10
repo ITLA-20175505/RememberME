@@ -46,8 +46,8 @@ public  class BaseDeDatos {
             db.execSQL(ISchemaTask.createTable);
             db.execSQL(ITaskHistorySchema.createTable);
 
-            Log.d("Database",ISchemaTask.trigger_before_insert);
-            db.execSQL(ISchemaTask.trigger_before_insert);
+/*            Log.d("Database",ISchemaTask.trigger_before_insert);
+            db.execSQL(ISchemaTask.trigger_before_insert);*/
            }
 
         @Override
@@ -58,6 +58,11 @@ public  class BaseDeDatos {
             db.execSQL("DROP TABLE IF EXISTS " + IRecurrenceSchema.recurrenceTable);
             db.execSQL("DROP TABLE IF EXISTS " + ISchemaTask.taskTable);
             db.execSQL("DROP TRIGGER IF EXISTS " + ISchemaTask.TRIGGER_INSERT);
+            db.execSQL("insert into Recurrence (name,description,intervaltype,interval) values ('Diario','','Dia',1)");
+            db.execSQL("insert into Recurrence (name,description,intervaltype,interval) values ('Interdiario','','Dia',2)");
+            db.execSQL("insert into Recurrence (name,description,intervaltype,interval) values ('Semanal','','Semana',1)");
+            db.execSQL("insert into Recurrence (name,description,intervaltype,interval) values ('Quincenal','','Semana',1)");
+            db.execSQL("insert into Recurrence (name,description,intervaltype,interval) values ('Mensual','','Mes',1)");
             onCreate(db);
         }
     }
