@@ -1,5 +1,7 @@
 package com.example.user.remember_me.ModeloVO;
-
+/* Esta clase se llama VO (Value Object) en esta clase se almacenan los valores temporales
+de las tareas, estas se comunican directamente con la clase DAO
+ */
 public class TaskVO {
     private int midTask;
     private String mname;
@@ -72,5 +74,10 @@ public class TaskVO {
 
     public void setRecurrence(RecurrenceVO recurrenceVO) {
         mRecurrence = recurrenceVO;
+    }
+
+    @Override
+    public String toString() {
+        return mname + "\r\r\r" + mtaskDate ;
     }
 }

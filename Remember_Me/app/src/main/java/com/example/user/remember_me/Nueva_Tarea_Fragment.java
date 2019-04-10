@@ -46,7 +46,7 @@ import static java.util.Calendar.YEAR;
 
 
 @RequiresApi(api = Build.VERSION_CODES.N)
-public class Nueva_Tarea_Fragment extends Fragment implements DatePickerDialog.OnDateSetListener {
+public class Nueva_Tarea_Fragment extends Fragment {
 
     private Spinner mnt_spinner;
     private Spinner mest_spinner;
@@ -77,14 +77,7 @@ public class Nueva_Tarea_Fragment extends Fragment implements DatePickerDialog.O
         super.onViewCreated(view, savedInstanceState);
 
 
-        btnFecha.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                DialogFragment newFragment = new DatePickerFragment();
-                newFragment.show(getFragmentManager(), "datePicker");
 
-            }
-        });
     }
 
     @Nullable
@@ -169,18 +162,7 @@ return view;
     }
 
 
-    @RequiresApi(api = Build.VERSION_CODES.N)
-    @Override
-    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-        Calendar c =Calendar.getInstance();
-        c.set(Calendar.YEAR,year);
-        c.set(Calendar.MONTH, month);
-        c.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-        String formato = DateFormat.getDateInstance().format(c.getTime());
-        TextView verFecha = (TextView) view.findViewById(R.id.view_fecha);
-        verFecha.setText(formato);
 
-    }
     }
 
 

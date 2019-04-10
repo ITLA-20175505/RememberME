@@ -13,7 +13,9 @@ import com.example.user.remember_me.ModeloVO.TaskVO;
 
 import java.io.ByteArrayInputStream;
 import java.util.ArrayList;
-
+/* Esta clase se encarga de verificar que todos los datos esten correctos antes de salir o entrar a la base de datos,
+para asi evitar excepciones u errores
+ */
 public class LogicaTask {
     private CoordinadorTask mCoordTask;
     private TaskVO mTask;

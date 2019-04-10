@@ -42,20 +42,17 @@ public class Tareas_Atrasadas_Fragment extends Fragment {
         mlistview = (ListView) view.findViewById(R.id.list_tareas_real);
 
         mlistaTarea = mcoordTask.getLateTask();
-        Log.d("Database", String.valueOf(mlistaTarea.size()));
-
         if (mlistaTarea.isEmpty()) {
 
-            Pair pair = new Pair("No hay", "Tareas Atrasadas");
-            mPairs.add(pair);
-        }
-        for (int i = 0; i < mlistaTarea.size(); i++) {
-            Pair pair = new Pair(mlistaTarea.get(i).gettaskDate(), mlistaTarea.get(i).getname());
-            mPairs.add(pair);
-        }
-        ArrayAdapter<Pair> arrayAdapter = new ArrayAdapter<Pair>(getActivity(), android.R.layout.simple_list_item_1,
-                mPairs);
-        mlistview.setAdapter(arrayAdapter);
+         String[] noTask = new String[]{"No hay Tareas Atrasadas","No hay Tareas Atrasadas","No hay Tareas Atrasadas",
+                 "No hay Tareas Atrasadas","No hay Tareas Atrasadas","No hay Tareas Atrasadas"};
+            ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1,
+                    noTask);
+            mlistview.setAdapter(arrayAdapter);
+        }else{
+        ArrayAdapter<TaskVO> arrayAdapter = new ArrayAdapter<TaskVO>(getActivity(), android.R.layout.simple_list_item_1,
+                mlistaTarea);
+        mlistview.setAdapter(arrayAdapter);}
         return view;
     }
 

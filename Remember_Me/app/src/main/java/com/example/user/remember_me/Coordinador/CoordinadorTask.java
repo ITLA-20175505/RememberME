@@ -8,7 +8,9 @@ import com.example.user.remember_me.Logica.LogicaTask;
 import com.example.user.remember_me.ModeloVO.TaskVO;
 
 import java.util.ArrayList;
-
+/* El coordinador sirve de puente entre la vista y la parte logica y DAO, esta se comunica directamente con el modelo Logica
+para tener un mayor control de los datos
+ */
 public class CoordinadorTask {
     private LogicaTask mLogicaTask;
 
