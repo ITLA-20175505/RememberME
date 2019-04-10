@@ -2,9 +2,10 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:id="@+id/prox_layout"
     android:layout_height="match_parent"
-    tools:context=".Tareas_realizadas_Fragment"
-   >
+    tools:context=".Proximas_tareas"
+    >
 
     <!-- TODO: Update blank fragment layout -->
     <RelativeLayout
@@ -12,7 +13,7 @@
         android:layout_height="wrap_content">
 
         <TextView
-            android:id="@+id/fondo5"
+            android:id="@+id/fondo"
             android:layout_width="279dp"
             android:layout_height="62dp"
             android:layout_alignParentStart="true"
@@ -25,7 +26,7 @@
 
 
         <TextView
-            android:id="@+id/txtTareasReal"
+            android:id="@+id/txtProximasT"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
@@ -35,7 +36,7 @@
             android:layout_marginEnd="89dp"
             android:layout_marginRight="89dp"
             android:gravity="center"
-            android:text="@string/tareas_realizadas"
+            android:text="@string/proximasT"
             android:textColor="@color/Negro"
             android:textSize="24sp"
             android:textStyle="bold" />
@@ -46,7 +47,7 @@
 
 
     <ListView
-        android:id="@+id/list_tareas_real"
+        android:id="@+id/list_prox_tareas"
         android:layout_width="359dp"
         android:layout_height="554dp"
         android:layout_gravity="center"

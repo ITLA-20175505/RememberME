@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
     tools:context=".BandejaDeEntrada">
 
     <android.support.design.widget.AppBarLayout
@@ -22,5 +23,14 @@
 
     <include layout="@layout/content_bandeja_de_entrada" />
 
-
+    <ImageButton
+        android:id="@+id/imageButton"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginBottom="30dp"
+        android:layout_gravity="bottom|end"
+        android:background="@drawable/oval"
+        android:elevation="10dp"
+        android:src="@drawable/ic_add"/>
 </android.support.design.widget.CoordinatorLayout>

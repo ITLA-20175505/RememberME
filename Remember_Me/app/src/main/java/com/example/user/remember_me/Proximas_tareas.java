@@ -10,13 +10,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-
-
-public class Tareas_Pendientes_Fragment extends Fragment {
+public class Proximas_tareas extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_tareas__pendientes_, null) ;
+        return inflater.inflate(R.layout.fragment_proximas_tareas, null) ;
     }
 
     @Override

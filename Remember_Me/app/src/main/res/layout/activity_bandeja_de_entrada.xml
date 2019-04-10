@@ -8,6 +8,20 @@
     android:fitsSystemWindows="true"
     tools:openDrawer="start">
 
+
+
+
+
+
+    <ListView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        >
+
+    </ListView>
+
+
+
     <include
         layout="@layout/app_bar_bandeja_de_entrada"
         android:layout_width="match_parent"

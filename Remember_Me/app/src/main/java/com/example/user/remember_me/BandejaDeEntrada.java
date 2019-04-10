@@ -1,6 +1,8 @@
 package com.example.user.remember_me;
 
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
@@ -48,6 +50,7 @@ public class BandejaDeEntrada extends AppCompatActivity
 
 
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
@@ -64,7 +67,9 @@ public class BandejaDeEntrada extends AppCompatActivity
             fm = new Tareas_realizadas_Fragment();
         }else if (id == R.id.nav_perfil) {
             fm = new Perfil_Fragment();
-        }
+        }else if (id == R.id.nav_proximas_tareas) {
+        fm = new Proximas_tareas();
+    }
 
         if(fm != null){
 
