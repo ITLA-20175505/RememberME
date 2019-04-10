@@ -2,7 +2,11 @@ package com.example.user.remember_me;
 
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
+<<<<<<< HEAD
 import android.app.TimePickerDialog;
+=======
+import android.app.Dialog;
+>>>>>>> 9b48d6df08b0018875e19d442ab3ebdda5acb2e3
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -39,21 +43,29 @@ import com.example.user.remember_me.ModeloVO.TaskVO;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+<<<<<<< HEAD
 import java.time.Year;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Locale;
 import java.util.TimeZone;
+=======
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Locale;
+
+import static java.util.Calendar.YEAR;
+>>>>>>> 9b48d6df08b0018875e19d442ab3ebdda5acb2e3
 
 
 @RequiresApi(api = Build.VERSION_CODES.N)
-public class Nueva_Tarea_Fragment extends Fragment implements DatePickerDialog.OnDateSetListener   {
+public class Nueva_Tarea_Fragment extends Fragment {
 
     private Spinner mnt_spinner;
     private Spinner mest_spinner;
     private EditText mtxtNombreTarea;
     private EditText mtxtNota;
-    private TextView txtFecha;
+    private TextView view_fecha;
     private Button mbtnSave;
     private LinearLayout mHorainicial;
     private LinearLayout mHoraFinal;
@@ -76,9 +88,17 @@ public class Nueva_Tarea_Fragment extends Fragment implements DatePickerDialog.O
     private BaseDeDatos mDb;
     private ArrayList<TaskVO> mlistaTask;
 
+    private int day, month,year;
 
 
-    @SuppressLint("WrongViewCast")
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+
+
+    }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -168,6 +188,7 @@ public class Nueva_Tarea_Fragment extends Fragment implements DatePickerDialog.O
             mCalendar.set(Calendar.DAY_OF_MONTH,dayOfMonth);
             getDate();
         }
+<<<<<<< HEAD
     };
 
         btnFecha.setOnClickListener(new View.OnClickListener() {
@@ -233,17 +254,19 @@ return view;
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+=======
+    });
+
+>>>>>>> 9b48d6df08b0018875e19d442ab3ebdda5acb2e3
+
+
+return view;
+    }
+
 
 
     }
 
-
-    @Override
-    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-
-
-    }
-}
 
 
 

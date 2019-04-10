@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/nueva_layout"
     tools:context=".Nueva_Tarea_Fragment" >
 
     <!-- TODO: Update blank fragment layout -->
